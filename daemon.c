@@ -7,6 +7,18 @@
 #include <syslog.h>
 
 
+#define LOG_FILE "exampled.log"
+#define RUNNING_DIR "/tmp"
+#define LOCK_FILE "exampled.lock"
+
+
+void signal_handler(sig)
+int sig;
+{
+	switch(sig){
+	case SIGHUP:
+		log_message()
+}
 static void skeleton_daemon()
 {
 	pid_t pid;
@@ -18,7 +30,6 @@ static void skeleton_daemon()
 	if (setsid()<0)
 		exit(EXIT_FAILURE);
 	signal(SIGCHLD, SIG_IGN);
-	signal(SIGHUP, SIG_IGN);
 	pid=fork();
 	if (pid<0)
 		exit(EXIT_FAILURE);
